@@ -11,4 +11,4 @@ class AddForm(forms.ModelForm):
 
     class Meta:
         model = Human
-        fields = ('firstName', 'lastName', 'address', 'lat', 'lon', 'phone_number')
+        fields = ('firstName', 'lastName', 'phone_number', 'address')

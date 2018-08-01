@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+import requests
 from .models import *
 from django.shortcuts import render, HttpResponseRedirect, get_object_or_404
 from .forms import AddForm
@@ -27,10 +28,21 @@ def delete(request, number):
 
 
 def add(request):
+    endpoint = 'https://maps.googleapis.com/maps/api/geocode/json?'
+    api_key = 'AIzaSyBeVeatzzWO7Cy2-rIPgxcDPFeoVo_ss0g'
     if request.method == 'POST':
         form = AddForm(request.POST)
         if form.is_valid():
-            form.save()
+            post = form.save()
+            address = request.POST.get('address').replace(' ', '+')
+            finishpoint = 'address={}&key={}&sensor=false&language=ru'.format(address, api_key)
+            req = endpoint + finishpoint
+            response = requests.get(req)
+            request = response.json()
+            post.address = request['results'][0]['formatted_address']
+            post.lat = request['results'][0]['geometry']['bounds']['northeast']['lat']
+            post.lon = request['results'][0]['geometry']['bounds']['northeast']['lng']
+            post.save()
             return HttpResponseRedirect('/')
     else:
         form = AddForm()
@@ -39,10 +51,21 @@ def add(request):
 
 def edit(request, number):
     human = get_object_or_404(Human, id = number)
+    endpoint = 'https://maps.googleapis.com/maps/api/geocode/json?'
+    api_key = 'AIzaSyBeVeatzzWO7Cy2-rIPgxcDPFeoVo_ss0g'
     if request.method == 'POST':
         form = AddForm(request.POST, instance = human)
         if form.is_valid():
-            form.save()
+            post = form.save()
+            address = request.POST.get('address').replace(' ', '+')
+            finishpoint = 'address={}&key={}&sensor=false&language=ru'.format(address, api_key)
+            req = endpoint + finishpoint
+            response = requests.get(req)
+            request = response.json()
+            post.address = request['results'][0]['formatted_address']
+            post.lat = request['results'][0]['geometry']['bounds']['northeast']['lat']
+            post.lon = request['results'][0]['geometry']['bounds']['northeast']['lng']
+            post.save()
             return HttpResponseRedirect('/')
     else:
         form = AddForm(instance = human)
