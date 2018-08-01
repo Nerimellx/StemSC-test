@@ -1,0 +1,120 @@
+		.main_container{
+			margin: 0 auto;
+			margin-top: 80px;
+			width: 1050px;
+			height: 100%;
+            border: 0.5px solid grey;
+            border-radius: 5px;
+		}
+
+		.main_header{
+            font-size: 20px;
+            padding-top: 15px;
+            padding-left: 20px;
+            padding-right: 20px;
+			width: 100%;
+			height: 60px;
+            background: deepskyblue;
+            border: 1px solid deepskyblue;
+            border-radius: 5px;
+		}
+
+        .main_header a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .main_header button {
+            float: right;
+            margin-top: 2px;
+            background: deepskyblue;
+            border: 1px solid deepskyblue;
+        }
+
+         .main_header .back {
+            float: right;
+            margin-top: 2px;
+            background: deepskyblue;
+            border: 1px solid deepskyblue;
+        }
+
+
+		.search{
+			float: right;
+		}
+
+		p{
+			display: inline;
+		}
+
+        .main_name{
+            float: left;
+            width: 150px;
+            text-align: left;
+        }
+        
+        .main_lat{
+            float: left;
+            width: 150px;
+            text-align: center;
+        }
+        
+        .main_lon{
+            float: left;
+            width: 150px;
+            text-align: center;
+        }
+        
+        .main_address{
+            float: left;
+            width: 150px;
+            text-align: center;
+        }
+        
+        .form-control{
+            display: inline;
+            width: 200px;
+            height: 25px;
+        }
+        
+        .main_number{
+            float: left;
+            width: 150px;
+            text-align: center;
+        }
+
+        .main_control{
+            float: right;
+            margin-right: 13px;
+        }
+
+		.main_single{
+            margin: 0 auto;
+            padding-top: 15px;
+            font-size: 15px;
+			height: 50px;
+			width: 1000px;
+			border-bottom: 1px solid black;
+		}
+
+        .textinput.textInput.form-control{
+            width: 100%;
+            height: 40px;
+        }
+
+        .post-form{
+            padding-left: 50px;
+            padding-right: 70px;
+            padding-bottom: 20px;
+            padding-top: 20px;
+        }
+
+        .numberinput.form-control{
+            width: 100%;
+            height: 40px;
+        }
+        
+        .main_submit{
+            margin-right: 0;
+            margin-left: 835px;
+        }

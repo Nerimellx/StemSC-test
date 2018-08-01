@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Index</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="/media/css/style.css">
+</head>
+<body>
+	<section id='Main'>
+		<div class="main_container">
+			<div class="main_header">
+				<a href="/add/">
+					<span class="glyphicon glyphicon-plus">
+
+					</span>
+                    ADD
+				</a>
+				<form action="/search/" role="form" method="POST" class='search'>
+					<input class="form-control" name="q" type="text">{% csrf_token %}
+                    <button type="submit"><span class="glyphicon glyphicon-search"></span></button>
+				</form>
+			</div>
+            {% for cont in humans %}
+			<div class="main_single">
+				<div class="main_name">
+                <p>
+					{{ cont.firstName }}
+				</p>
+                </div>
+				<div class="main_name">
+                <p>
+					{{ cont.lastName }}
+				</p>
+                </div>
+				<div class="main_address">
+                <p>
+					{{ cont.address }}
+				</p>
+                </div>
+                <div class="main_lat">
+                <p>
+					{{ cont.lat }}
+				</p>
+                </div>
+                <div class="main_lon">
+                <p>
+					{{ cont.lon }}
+				</p>
+                </div>
+                <div class="main_number">
+                <p>
+					{{ cont.phone_number }}
+				</p>
+                </div>
+                <div class="main_control">
+                    <a href="/edit/{{ cont.id }}">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </a>
+                    <a href="/delete/{{ cont.id }}">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </a>
+                </div>
+			</div>
+            {% endfor %}
+		</div>
+	</section>
+</body>
+</html>
