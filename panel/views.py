@@ -6,7 +6,8 @@ from django.shortcuts import render, HttpResponseRedirect, get_object_or_404
 from .forms import AddForm
 from django.db.models import Q
 
-
+endpoint = 'https://maps.googleapis.com/maps/api/geocode/json?'
+api_key = 'AIzaSyBeVeatzzWO7Cy2-rIPgxcDPFeoVo_ss0g'
 
 def main(request):
     title = 'Primary'
@@ -28,8 +29,6 @@ def delete(request, number):
 
 
 def add(request):
-    endpoint = 'https://maps.googleapis.com/maps/api/geocode/json?'
-    api_key = 'AIzaSyBeVeatzzWO7Cy2-rIPgxcDPFeoVo_ss0g'
     if request.method == 'POST':
         form = AddForm(request.POST)
         if form.is_valid():
@@ -51,8 +50,6 @@ def add(request):
 
 def edit(request, number):
     human = get_object_or_404(Human, id = number)
-    endpoint = 'https://maps.googleapis.com/maps/api/geocode/json?'
-    api_key = 'AIzaSyBeVeatzzWO7Cy2-rIPgxcDPFeoVo_ss0g'
     if request.method == 'POST':
         form = AddForm(request.POST, instance = human)
         if form.is_valid():
@@ -63,8 +60,8 @@ def edit(request, number):
             response = requests.get(req)
             request = response.json()
             post.address = request['results'][0]['formatted_address']
-            post.lat = request['results'][0]['geometry']['location']['lat']
-            post.lon = request['results'][0]['geometry']['location']['lng']
+            post.lat = request['results'][0]['geometry']['bounds']['northeast']['lat']
+            post.lon = request['results'][0]['geometry']['bounds']['northeast']['lng']
             post.save()
             return HttpResponseRedirect('/')
     else:
