@@ -39,8 +39,8 @@ def add(request):
             response = requests.get(req)
             request = response.json()
             post.address = request['results'][0]['formatted_address']
-            post.lat = request['results'][0]['geometry']['bounds']['northeast']['lat']
-            post.lon = request['results'][0]['geometry']['bounds']['northeast']['lng']
+            post.lat = request['results'][0]['geometry']['location']['lat']
+            post.lon = request['results'][0]['geometry']['location']['lng']
             post.save()
             return HttpResponseRedirect('/')
     else:
@@ -60,8 +60,8 @@ def edit(request, number):
             response = requests.get(req)
             request = response.json()
             post.address = request['results'][0]['formatted_address']
-            post.lat = request['results'][0]['geometry']['bounds']['northeast']['lat']
-            post.lon = request['results'][0]['geometry']['bounds']['northeast']['lng']
+            post.lat = request['results'][0]['geometry']['location']['lat']
+            post.lon = request['results'][0]['geometry']['location']['lng']
             post.save()
             return HttpResponseRedirect('/')
     else:
